@@ -1,34 +1,41 @@
-import { useMsal } from "@azure/msal-react";
-import { config } from "../../config";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import { fetchGraphApi } from "../../services";
 
 const Profile = () => {
-  const { accounts, instance } = useMsal();
   const [profileDetail, setProfileDetail] = useState<any>();
   const [managerDetail, setManagerDetail] = useState<any>();
-
+  const graphAPIAccessToken = localStorage.getItem("graphAPIAccessToken");
   useEffect(() => {
-    instance
-      .acquireTokenSilent({
-        scopes: config.scopes,
-        account: accounts?.[0],
-      })
-      .then((res: any) => {
-        const accessToken = res?.accessToken;
-        fetchGraphApi("https://graph.microsoft.com/v1.0/me", accessToken).then(
-          (res: any) => {
-            setProfileDetail(res);
-          }
-        );
-        fetchGraphApi(
-          "https://graph.microsoft.com/v1.0/me/manager",
-          accessToken
-        ).then((res: any) => {
-          setManagerDetail(res);
-        });
-      });
-  }, [instance, accounts]);
+    fetchGraphApi(
+      "https://graph.microsoft.com/v1.0/me",
+      graphAPIAccessToken as string
+    ).then((res: any) => {
+      setProfileDetail(res);
+    });
+    fetchGraphApi(
+      "https://graph.microsoft.com/v1.0/me/manager",
+      graphAPIAccessToken as string
+    ).then((res: any) => {
+      setManagerDetail(res);
+    });
+    fetchGraphApi(
+      "https://graph.microsoft.com/v1.0/users",
+      graphAPIAccessToken as string
+    ).then((res) => {
+      if (res) {
+        console.log("Users::", res);
+      }
+    });
+    fetchGraphApi(
+      "https://graph.microsoft.com/v1.0/me/calendar",
+      graphAPIAccessToken as string
+    ).then((res) => {
+      if (res) {
+        console.log("Calendar::", res);
+      }
+    });
+  }, [graphAPIAccessToken]);
 
   return (
     <div>

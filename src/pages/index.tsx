@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useIsAuthenticated, useMsal } from "@azure/msal-react";
 import { config } from "../config";
 import { useEffect, useState } from "react";
@@ -21,6 +22,19 @@ const HomePage = () => {
       setloggedAccount(currentUser);
     }
   }, [accounts]);
+
+  useEffect(() => {
+    if (isSiggedIn) {
+      instance
+        .acquireTokenSilent({
+          scopes: config.scopes,
+          account: accounts?.[0],
+        })
+        .then((res) => {
+          localStorage.setItem("graphAPIAccessToken", res?.accessToken);
+        });
+    }
+  }, [isSiggedIn, instance, accounts]);
 
   const onSignOut = () => {
     instance.logoutRedirect();
