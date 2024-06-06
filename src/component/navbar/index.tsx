@@ -20,7 +20,7 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    if (!isSiggedIn && !hideHeaderforRoute?.includes(location?.pathname)) {
+    if (!isSiggedIn && location?.pathname !== "/") {
       navigate("/");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
