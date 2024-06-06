@@ -10,9 +10,10 @@ const HomePage = () => {
   const isSiggedIn = useIsAuthenticated();
 
   const onSignIn = () => {
-    instance.loginRedirect({
-      scopes: config.scopes,
-    });
+    // instance.loginRedirect({
+    //   scopes: config.scopes,
+    // });
+    navigate("/meeting");
   };
   useEffect(() => {
     if (isSiggedIn) {
