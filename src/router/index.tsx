@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import HomePage from "../pages";
 import Profile from "../pages/profile";
 import { useEffect } from "react";
@@ -36,8 +36,8 @@ const Approuter = () => {
   }, []);
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/login" />} />
-      <Route path="/login" element={<HomePage />} />
+      {/* <Route path="/" element={<Navigate to="/login" />} /> */}
+      <Route path="/" element={<HomePage />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/booking" element={<RoomBooking />} />
       <Route path="/meeting" element={<Meeting />} />

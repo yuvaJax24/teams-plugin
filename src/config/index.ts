@@ -5,6 +5,6 @@ const CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
 export const config = {
   clientId: CLIENT_ID,
   authority: `${MICROSOFT_DOMAIN}/${TENANT_DOMAIN}`,
-  redirectUri: "/login",
+  redirectUri: "/",
   scopes: ["User.Read", "openid", "offline_access", "User.Read.All"],
 };

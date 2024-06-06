@@ -9,7 +9,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [activeMenu, setActiveMenu] = useState("");
-  const hideHeaderforRoute = ["/login"];
+  const hideHeaderforRoute = ["/"];
 
   useEffect(() => {
     setActiveMenu(location?.pathname);
@@ -18,6 +18,13 @@ const Navbar = () => {
   const onSignOut = () => {
     instance.logoutRedirect();
   };
+
+  useEffect(() => {
+    if (!isSiggedIn && !hideHeaderforRoute?.includes(location?.pathname)) {
+      navigate("/");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSiggedIn, location?.pathname]);
 
   return (
     <div
