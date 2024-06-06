@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { menuList } from "./menuList";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useIsAuthenticated, useMsal } from "@azure/msal-react";
