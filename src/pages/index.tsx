@@ -26,6 +26,7 @@ const HomePage = () => {
           navigate("/meeting");
         });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSiggedIn, instance, accounts]);
 
   return (

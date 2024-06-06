@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Navigate, Route, Routes } from "react-router-dom";
 import HomePage from "../pages";
 import Profile from "../pages/profile";
