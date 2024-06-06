@@ -19,22 +19,6 @@ const Profile = () => {
     ).then((res: any) => {
       setManagerDetail(res);
     });
-    fetchGraphApi(
-      "https://graph.microsoft.com/v1.0/users",
-      graphAPIAccessToken as string
-    ).then((res) => {
-      if (res) {
-        console.log("Users::", res);
-      }
-    });
-    fetchGraphApi(
-      "https://graph.microsoft.com/v1.0/me/calendar",
-      graphAPIAccessToken as string
-    ).then((res) => {
-      if (res) {
-        console.log("Calendar::", res);
-      }
-    });
   }, [graphAPIAccessToken]);
 
   return (

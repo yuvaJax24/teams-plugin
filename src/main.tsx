@@ -4,6 +4,7 @@ import App from "./App.tsx";
 import { BrowserRouter } from "react-router-dom";
 import { EventType, PublicClientApplication } from "@azure/msal-browser";
 import { config } from "./config/index.ts";
+import "./index.css";
 
 const msalInstance = new PublicClientApplication({
   auth: {
@@ -14,6 +15,9 @@ const msalInstance = new PublicClientApplication({
   cache: {
     cacheLocation: "localStorage",
     storeAuthStateInCookie: false,
+  },
+  system: {
+    allowRedirectInIframe: true,
   },
 });
 
